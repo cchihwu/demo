@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, MenuItem, Select, Typography } from '@mui/material';
+import { Box, MenuItem, Select, Typography, TextField } from '@mui/material';
+import '../../styles/layout.css';
 
 interface SearchItemDropdownProps {
     itemName: string;
@@ -9,65 +10,46 @@ interface SearchItemDropdownProps {
 }
 
 const SearchItemDropdown: React.FC<SearchItemDropdownProps> = ({ itemName = "", itemValue = "　", nameFlex = 1, valueFlex = 1 }) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    // if (event.key === 'Enter') {
+    //   onEnter(value);
+    // }
+  };
+
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', border: '2px solid black', borderRadius: '1px', height: '30px', width: '700px' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', height: '30px', width: '300px' }}>
 	    {/* Item Name Box */}
-	    <Box
-	      sx={{
-	        flex: nameFlex,
-	        backgroundColor: '#d3d3d3',
-	        display: 'flex',
-	        alignItems: 'center',
-	        justifyContent: 'center',
-	        padding: '3px',
-	        borderRadius: '1px 0 0 1px',
-	      }}
-	    >
-	      <Typography variant="body2" sx={{ fontSize: '16px' }}>
+	      <Typography variant="body2" className="typography typography-left-search-item">
           {itemName}
 	      </Typography>
-	    </Box>
-
-    {/* Divider Line */}
-    <Box
-      sx={{
-        width: '2px',
-        backgroundColor: 'black',
-        height: '100%',
-      }}
-    />
 
     {/* Item Value Box */}
-    <Box
-      sx={{
-        flex: valueFlex,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '3px',
-        borderRadius: '0 1px 1px 0',
-        backgroundColor: 'white',
-      }}
-    >
-      <Typography variant="body2" sx={{ fontSize: '16px' }}>
-        {itemValue}
-      </Typography>
-    </Box>
+        <TextField
+          onKeyDown={handleKeyPress}
+          variant="outlined"
+          InputProps={{
+            sx: {
+              border: 'none',
+              backgroundColor: 'transparent',
+              '& .MuiOutlinedInput-notchedOutline': {
+                border: 'none',
+                borderRadius: '0',
+              },
+              paddingLeft: 0,
+            },
+          }}
+          sx={{
+            '& .MuiInputBase-root': {
+              height: '30px',
+              border: '2px solid black',
+              borderLeft: 'none',
+              borderRadius: '0',
+            },
+            backgroundColor: 'white'
+          }}
+        />
 
-	    {/* Divider Line */}
-	    <Box
-	      sx={{
-	        width: '2px',
-	        backgroundColor: 'black',
-	        height: '100%',
-	      }}
-	    />
-    <Box
-      sx={{
-        flex: 2
-      }}
-    >
-      <Select
+      {/* <Select
         sx={{
           width: '100%',
           height: '30px',
@@ -78,8 +60,8 @@ const SearchItemDropdown: React.FC<SearchItemDropdownProps> = ({ itemName = "", 
             <MenuItem value="option1">１：チルド</MenuItem>
             <MenuItem value="option2">２：冷食</MenuItem>
             <MenuItem value="option3">３：ドライ</MenuItem>
-        </Select>
-        </Box>
+        </Select> */}
+
     </Box>
   );
 };

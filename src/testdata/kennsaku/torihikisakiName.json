@@ -1,0 +1,6 @@
+{
+    "data": [
+      { "code": "000001", "name": "xxx", "department": "xxx", "address": "xxx", "phone": "000-0000-001" },
+      { "code": "000002", "name": "yyy", "department": "yyy", "address": "yyy", "phone": "000-0000-002" }
+    ]
+}

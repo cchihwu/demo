@@ -1,0 +1,49 @@
+.typography {
+    font-size: 12px;
+    padding-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: 2px solid black;
+}
+
+.typography-left-item {
+    width: 100px;
+    background-color: #d3d3d3;
+}
+
+.typography-right-item {
+    width: 100px;
+    background-color: white;
+    border-left: 0px solid transparent;
+}
+
+.typography-left-search-item {
+    width: 200px;
+    background-color: #d3d3d3;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0px;
+    max-width: 200px;
+    min-width: 200px;
+}
+  
+/* .typography {
+    width: 120px;
+    min-width: 120px;
+    border: 2px solid black;
+} */
+  
+.select {
+    height: 25px;
+    width: 120px;
+    border: 2px solid black;
+    border: 'none';
+    outline: 'none';
+}

@@ -5,6 +5,7 @@ import SalesDesCdDropdown from '../common/SalesDesCdDropdown';
 import MessageTypography from '../common/MessageTypography';
 import ItemTypography from '../common/ItemTypography';
 import TimeRageTypography from '../common/TimeRageTypography';
+import { SelectChangeEvent } from '@mui/material/Select';
 
 interface TopSectionProps {
   showView: boolean;
@@ -13,7 +14,8 @@ interface TopSectionProps {
 const TopSection: React.FC<TopSectionProps> = ({ showView = false }) => {
   const [temperature, setTemperature] = useState<string>('');
 
-  const handleTemperatureChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleTemperatureChange = (event: SelectChangeEvent<string>) => {
+    console.log(event.target.value);
     setTemperature(event.target.value as string);
   };
   

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Box, MenuItem, Select, Typography } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
+import '../../styles/layout.css';
 
 interface TemperatureDropdownProps {
     itemName: string;
     nameFlex?: number;
     valueFlex?: number;
-    onChange?: (event: React.ChangeEvent<{ value: unknown }>) => void;
+    onChange?: (event: SelectChangeEvent<string>) => void;
 }
 
-// const TemperatureDropdown: React.FC = () => {
 const TemperatureDropdown: React.FC<TemperatureDropdownProps> = ({ itemName = "", nameFlex = 1, valueFlex = 1, onChange }) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', border: '2px solid black', borderRadius: '1px', height: '30px', width: '270px' }}>
@@ -24,7 +25,7 @@ const TemperatureDropdown: React.FC<TemperatureDropdownProps> = ({ itemName = ""
 	        borderRadius: '1px 0 0 1px',
 	      }}
 	    >
-	      <Typography variant="body2" sx={{ fontSize: '16px' }}>
+	      <Typography variant="body2" className="typography">
           {itemName}
 	      </Typography>
 	    </Box>

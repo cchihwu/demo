@@ -16,7 +16,7 @@ const MyTable = () => {
   ];
   
   const initialRows = items.map((item, rowIndex) => {
-    return Array.from({ length: 10 }, (_, colIndex) => {
+    return Array.from({ length: 15 }, (_, colIndex) => {
       return colIndex === 0
         ? item
         : colIndex === 1
@@ -29,7 +29,7 @@ const MyTable = () => {
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const [orderBy, setOrderBy] = useState<number>(1);
   const [page, setPage] = useState(0);
-  const [rowsPerPage] = useState(10); // Adjust as needed
+  const [rowsPerPage] = useState(7); // Adjust as needed
   const [checked, setChecked] = useState<boolean[]>(Array(rows.length).fill(false)); // State for individual checkboxes
   const [selectAll, setSelectAll] = useState<boolean>(false); // State for select all checkbox
 
@@ -40,13 +40,13 @@ const MyTable = () => {
   const handleSort = (columnIndex: number) => {
     const isAsc = order === 'asc';
     const sortedRows = [...rows].sort((a, b) => {
-      if (columnIndex === 0) {
+      if (columnIndex === 1) {
         return isAsc
           ? String(a[0]).localeCompare(String(b[0]))
           : String(b[0]).localeCompare(String(a[0]));
-      } else if (columnIndex === 1) {
-        const valA = Number(a[1]);
-        const valB = Number(b[1]);
+      } else if (columnIndex === 2) {
+        const valA = Number(a[2]);
+        const valB = Number(b[2]);
         return isAsc ? valA - valB : valB - valA;
       }
       return 0;
@@ -111,21 +111,6 @@ const MyTable = () => {
         <Table sx={{ border: '1px solid black', borderCollapse: 'collapse', padding: '0.5px 0 0.5px 5px', backgroundColor: 'transparent' }}>
           <TableHead>
             <TableRow>
-              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', cursor: 'pointer', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }} onClick={() => handleSort(0)}>
-                Column 1 {orderBy === 0 ? (order === 'asc' ? '↑' : '↓') : ''}
-              </TableCell>
-              <TableCell rowSpan={2} sx={{ border: '1px solid black', cursor: 'pointer', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }} onClick={() => handleSort(1)}>
-                Column 2 {orderBy === 1 ? (order === 'asc' ? '↑' : '↓') : ''}
-              </TableCell>
-              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>Column 3</TableCell>
-              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>Column 4</TableCell>
-              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>Column 5</TableCell>
-              <TableCell colSpan={2} align="center" sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>
-                Column 6 + 7
-              </TableCell>
-              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>Column 8</TableCell>
-              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>Column 9</TableCell>
-              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>Column 10</TableCell>
               <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>
                 <Checkbox
                   checked={selectAll}
@@ -138,30 +123,37 @@ const MyTable = () => {
                   }}
                 />
               </TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', cursor: 'pointer', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }} onClick={() => handleSort(0)}>
+                枝番 {orderBy === 0 ? (order === 'asc' ? '↑' : '↓') : ''}
+              </TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', cursor: 'pointer', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }} onClick={() => handleSort(1)}>
+                受注データ {orderBy === 1 ? (order === 'asc' ? '↑' : '↓') : ''}
+              </TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>出荷日</TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>受注経路</TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>商品CD</TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>商品名</TableCell>
+              <TableCell colSpan={2} align="center" sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>
+                受注数量
+              </TableCell>
+              <TableCell colSpan={2} align="center" sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>単価</TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>在庫</TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>欠品</TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>売上計上部署CD</TableCell>
+              <TableCell rowSpan={2} sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>セールス担当CD</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>Column 6</TableCell>
-              <TableCell sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>Column 7</TableCell>
+              <TableCell sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>ケース数</TableCell>
+              <TableCell sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>バラ数</TableCell>
+              <TableCell sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>ケース単価</TableCell>
+              <TableCell sx={{ border: '1px solid black', textAlign: 'center', fontSize: '14px', padding: '0.5px 0 0.5px 5px' }}>バラ単価</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {row.map((cell, colIndex) => (
-                  colIndex === 8 ? (
-                    <TableCell
-                      key={colIndex}
-                      colSpan={2} // Merge Column 8 and Column 9
-                      sx={{
-                        border: '1px solid black',
-                        padding: 0,
-                        textAlign: 'center',
-                        fontSize: '14px'
-                      }}
-                    >
-                      {cell}
-                    </TableCell>
-                  ) : colIndex === 9 ? (
+                  colIndex === 0 ? (
                     <TableCell key={colIndex} sx={{
                       border: '1px solid black',
                       padding: 0,

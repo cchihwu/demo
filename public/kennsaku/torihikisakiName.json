@@ -1,0 +1,9 @@
+{
+    "data": [
+      { "code": "000001", "name": "xxx", "department": "xxx", "address": "xxx", "phone": "000-0000-001" },
+      { "code": "000002", "name": "yyy", "department": "yyy", "address": "yyy", "phone": "000-0000-002" },
+      { "code": "000003", "name": "yyy", "department": "yyy", "address": "yyy", "phone": "000-0000-003" },
+      { "code": "000004", "name": "yyy", "department": "yyy", "address": "yyy", "phone": "000-0000-004" },
+      { "code": "000005", "name": "yyy", "department": "yyy", "address": "yyy", "phone": "000-0000-005" }
+    ]
+}
